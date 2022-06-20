@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+   // dd(config('db.posts'));
     return view('welcome');
-});
+})->name('welcome');
 
-Route::get('/news', 'Guest/PostController@index');
-Route::get('/news/{post}', 'Guest/PostController@index');
+Route::get('/news', 'Guest\PostController@index')->name('news.index');
+Route::get('/news/{post}', 'Guest\PostController@show')->name('news.show');
+
+Route::resource('/admin/posts', 'Admin\PostController');
 
 /* 
 Post 
